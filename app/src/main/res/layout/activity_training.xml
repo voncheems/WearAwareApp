@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:id="@+id/layoutTopBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="#F5F5F5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_chevron_right"
+            android:rotation="180"
+            android:contentDescription="Back"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TRAINING"
+            android:textColor="#1E293B"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:layout_marginStart="12dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/layoutTopBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Progress Banner -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#0F2849">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Progress"
+                        android:textColor="#94A3B8"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="6dp">
+
+                        <TextView
+                            android:id="@+id/tvProgressLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2 of 6 modules completed"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="33%"
+                            android:textColor="#FBBF24"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progressTraining"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="12dp"
+                        android:progress="33"
+                        android:max="100"
+                        android:progressTint="#FBBF24"
+                        android:progressBackgroundTint="#1E3A5F" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Section Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PPE Modules"
+                android:textColor="#1E293B"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Module 1: Hard Hat -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moduleHardHat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp"
+                        app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#EFF6FF">
+                        <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                            android:src="@drawable/ic_inspections" android:layout_gravity="center"
+                            android:contentDescription="Hard Hat" app:tint="#60A5FA" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Hard Hat Safety" android:textColor="#1E293B"
+                            android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Head protection regulations &amp; usage" android:textColor="#64748B"
+                            android:textSize="12sp" android:layout_marginTop="2dp" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="5 questions" android:textColor="#94A3B8" android:textSize="11sp" />
+                            <View android:layout_width="4dp" android:layout_height="4dp"
+                                android:background="#94A3B8" android:layout_marginHorizontal="6dp" />
+                            <TextView android:id="@+id/tvHardHatStatus" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Completed"
+                                android:textColor="#10B981" android:textSize="11sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right" android:contentDescription="Open" app:tint="#94A3B8" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Module 2: Safety Vest -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moduleSafetyVest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp"
+                        app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFF7ED">
+                        <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                            android:src="@drawable/ic_compliance" android:layout_gravity="center"
+                            android:contentDescription="Safety Vest" app:tint="#F97316" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Safety Vest Requirements" android:textColor="#1E293B"
+                            android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="High-visibility clothing standards" android:textColor="#64748B"
+                            android:textSize="12sp" android:layout_marginTop="2dp" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="5 questions" android:textColor="#94A3B8" android:textSize="11sp" />
+                            <View android:layout_width="4dp" android:layout_height="4dp"
+                                android:background="#94A3B8" android:layout_marginHorizontal="6dp" />
+                            <TextView android:id="@+id/tvVestStatus" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Completed"
+                                android:textColor="#10B981" android:textSize="11sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right" android:contentDescription="Open" app:tint="#94A3B8" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Module 3: Gloves -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moduleGloves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp"
+                        app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#F0FDF4">
+                        <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                            android:src="@drawable/ic_team" android:layout_gravity="center"
+                            android:contentDescription="Gloves" app:tint="#10B981" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Hand Protection &amp; Gloves" android:textColor="#1E293B"
+                            android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Glove types, usage, and inspection" android:textColor="#64748B"
+                            android:textSize="12sp" android:layout_marginTop="2dp" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="5 questions" android:textColor="#94A3B8" android:textSize="11sp" />
+                            <View android:layout_width="4dp" android:layout_height="4dp"
+                                android:background="#94A3B8" android:layout_marginHorizontal="6dp" />
+                            <TextView android:id="@+id/tvGlovesStatus" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Not Started"
+                                android:textColor="#94A3B8" android:textSize="11sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right" android:contentDescription="Open" app:tint="#94A3B8" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Module 4: Safety Boots -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moduleBoots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp"
+                        app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFF1F2">
+                        <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                            android:src="@drawable/ic_location" android:layout_gravity="center"
+                            android:contentDescription="Boots" app:tint="#F43F5E" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Safety Boots &amp; Footwear" android:textColor="#1E293B"
+                            android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Footwear standards for hazardous zones" android:textColor="#64748B"
+                            android:textSize="12sp" android:layout_marginTop="2dp" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="5 questions" android:textColor="#94A3B8" android:textSize="11sp" />
+                            <View android:layout_width="4dp" android:layout_height="4dp"
+                                android:background="#94A3B8" android:layout_marginHorizontal="6dp" />
+                            <TextView android:id="@+id/tvBootsStatus" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Not Started"
+                                android:textColor="#94A3B8" android:textSize="11sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right" android:contentDescription="Open" app:tint="#94A3B8" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Module 5: Eye Protection -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moduleEyeProtection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp"
+                        app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#F0F9FF">
+                        <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                            android:src="@drawable/ic_inspections" android:layout_gravity="center"
+                            android:contentDescription="Eye Protection" app:tint="#0EA5E9" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Eye &amp; Face Protection" android:textColor="#1E293B"
+                            android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Goggles, face shields, and safety specs" android:textColor="#64748B"
+                            android:textSize="12sp" android:layout_marginTop="2dp" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="5 questions" android:textColor="#94A3B8" android:textSize="11sp" />
+                            <View android:layout_width="4dp" android:layout_height="4dp"
+                                android:background="#94A3B8" android:layout_marginHorizontal="6dp" />
+                            <TextView android:id="@+id/tvEyeStatus" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Not Started"
+                                android:textColor="#94A3B8" android:textSize="11sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right" android:contentDescription="Open" app:tint="#94A3B8" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Module 6: Respiratory -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moduleRespiratory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp">
+                    <androidx.cardview.widget.CardView android:layout_width="48dp" android:layout_height="48dp"
+                        app:cardCornerRadius="12dp" app:cardElevation="0dp" app:cardBackgroundColor="#F5F3FF">
+                        <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                            android:src="@drawable/ic_compliance" android:layout_gravity="center"
+                            android:contentDescription="Respiratory" app:tint="#8B5CF6" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Respiratory Protection" android:textColor="#1E293B"
+                            android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Masks, respirators, and air quality rules" android:textColor="#64748B"
+                            android:textSize="12sp" android:layout_marginTop="2dp" />
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="5 questions" android:textColor="#94A3B8" android:textSize="11sp" />
+                            <View android:layout_width="4dp" android:layout_height="4dp"
+                                android:background="#94A3B8" android:layout_marginHorizontal="6dp" />
+                            <TextView android:id="@+id/tvRespiratoryStatus" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Not Started"
+                                android:textColor="#94A3B8" android:textSize="11sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right" android:contentDescription="Open" app:tint="#94A3B8" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

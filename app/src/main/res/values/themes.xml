@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.WearAwarer" parent="Theme.Material3.Light.NoActionBar">
+        <!-- WearAware Theme Colors -->
+        <item name="colorPrimary">@color/primary_purple</item>
+        <item name="colorPrimaryDark">@color/primary_purple_dark</item>
+        <item name="colorAccent">@color/primary_orange</item>
+
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/primary_purple</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.WearAwarer" parent="Base.Theme.WearAwarer" />
+
+    <!-- Splash Screen Theme -->
+    <style name="Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/gradient_primary</item>
+        <item name="android:statusBarColor">@color/primary_purple</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>

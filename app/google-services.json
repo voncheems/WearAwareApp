@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1078961178553",
+    "project_id": "wearaware-6ea0e",
+    "storage_bucket": "wearaware-6ea0e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078961178553:android:4ab70e94672b9b3fccd868",
+        "android_client_info": {
+          "package_name": "com.example.wearawarer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg6yQjm2hx8Nl2W_FJ28_rQ31_2lXrrjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

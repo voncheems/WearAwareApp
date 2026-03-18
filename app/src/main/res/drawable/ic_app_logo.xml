@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Save as: res/drawable/ic_app_logo.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M60,60m-55,0a55,55 0,1 1,110 0a55,55 0,1 1,-110 0"/>
+
+    <!-- Hard hat icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,35C47,35 38,44 38,57v8h44v-8C82,44 73,35 60,35z"/>
+
+    <!-- Hard hat brim -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,65h56v8H32z"/>
+
+    <!-- Checkmark -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M50,75l-8,-8 3,-3 5,5 12,-12 3,3z"/>
+</vector>

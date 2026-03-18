@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- WearAware Theme Colors (from image) -->
+    <color name="primary_purple">#6366F1</color>
+    <color name="primary_purple_dark">#4F46E5</color>
+    <color name="primary_orange">#F97316</color>
+    <color name="primary_orange_light">#FB923C</color>
+
+    <!-- Backgrounds -->
+    <color name="bg_light">#F8FAFC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- UI Accents -->
+    <color name="success_green">#10B981</color>
+    <color name="error_red">#EF4444</color>
+    <color name="warning_yellow">#FBBF24</color>
+
+    <!-- Grays -->
+    <color name="text_primary">#1E293B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_muted">#94A3B8</color>
+    <color name="gray_100">#F1F5F9</color>
+    <color name="gray_200">#E2E8F0</color>
+
+    <!-- Specific UI components -->
+    <color name="bottom_nav_active">#6366F1</color>
+    <color name="bottom_nav_inactive">#94A3B8</color>
+</resources>

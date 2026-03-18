@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/gradient_primary"
+    android:gravity="center_horizontal">
+
+    <!-- Profile Circle -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="4dp"
+        android:backgroundTint="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_profile"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/profile_picture" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- User Name -->
+    <TextView
+        android:id="@+id/tvNavUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INSPECTOR NAME"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05" />
+
+    <!-- User Role -->
+    <TextView
+        android:id="@+id/tvNavUserRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INSPECTOR"
+        android:textColor="#E0E7FF"
+        android:textSize="12sp"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>
