@@ -60,8 +60,10 @@ class AlertsAdapter(
         if (isoString == "Just Now") return "Just Now"
         return try {
             val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            parser.timeZone = TimeZone.getTimeZone("UTC")            // input is UTC
             val date = parser.parse(isoString.replace("Z", ""))
             val formatter = SimpleDateFormat("h:mm a", Locale.getDefault())
+            formatter.timeZone = TimeZone.getTimeZone("Asia/Manila") // display in PH time
             formatter.format(date!!)
         } catch (e: Exception) {
             isoString.take(10)
@@ -109,9 +111,9 @@ class AlertsFragment : Fragment() {
                         created_at   = "Just Now",
                         result       = data.optString("type", "violation"),
                         missing_ppe  = missingList,
-                        photo_url    = data.optString("photo_url", null),
+                        photo_url    = data.optString("photo_url").takeIf { it.isNotEmpty() },
                         station      = data.optString("station", "Live Detection"),
-                        location     = data.optString("location", null)
+                        location     = data.optString("location").takeIf { it.isNotEmpty() }
                     )
 
                     adapter.addAlertAtTop(tempAlert)

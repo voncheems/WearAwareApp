@@ -65,6 +65,9 @@
             android:name=".TrainingActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".SettingsActivity" />
+
     </application>
 
 </manifest>

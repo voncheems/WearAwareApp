@@ -1,16 +1,16 @@
 package com.example.wearawarer
 
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.wearawarer.databinding.FragmentHomeBinding
-import android.content.Intent
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -80,6 +80,20 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun startActivityWithSlide(intent: Intent) {
+        startActivity(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            requireActivity().overrideActivityTransition(
+                android.app.Activity.OVERRIDE_TRANSITION_OPEN,
+                R.anim.slide_in_right,
+                R.anim.slide_out_left
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+    }
+
     private fun setupQuickActions() {
         binding.cardInspections.setOnClickListener {
             (activity as? MainActivity)?.navigateTo(R.id.nav_inspections)
@@ -91,18 +105,22 @@ class HomeFragment : Fragment() {
             (activity as? MainActivity)?.navigateTo(R.id.nav_team)
         }
         binding.cardTraining.setOnClickListener {
-            startActivity(Intent(requireContext(), TrainingActivity::class.java))
+            startActivityWithSlide(Intent(requireContext(), TrainingActivity::class.java))
         }
         binding.cardCompliance.setOnClickListener {
             (activity as? MainActivity)?.navigateTo(R.id.nav_alerts)
         }
         binding.cardSettings.setOnClickListener {
-            Toast.makeText(requireContext(), "Settings coming soon", Toast.LENGTH_SHORT).show()
+            startActivityWithSlide(Intent(requireContext(), SettingsActivity::class.java))
+        }
+        binding.ivNotification.setOnClickListener {
+            (activity as? MainActivity)?.navigateTo(R.id.nav_alerts)
         }
     }
 
     override fun onResume() {
         super.onResume()
+        displayUserInfo()
         fetchStats()
     }
 

@@ -17,8 +17,6 @@ data class UserData(
     val role: String
 )
 
-data class TokenRequest(val fcm_token: String)
-
 data class NotificationAlert(
     val id: Int,
     val detection_id: Int,
@@ -38,16 +36,29 @@ data class DetectionStats(
     val compliance_rate: Int
 )
 
+data class InspectorProfile(
+    val id: Int,
+    val full_name: String,
+    val email: String,
+    val role: String,
+    val created_at: String
+)
+
+data class UpdateProfileRequest(
+    val full_name: String? = null,
+    val current_password: String? = null,
+    val new_password: String? = null
+)
+
+data class UpdateProfileResponse(
+    val success: Boolean,
+    val user: InspectorProfile
+)
+
 interface ApiService {
 
     @POST("api/auth/login")
     suspend fun login(@Body body: LoginRequest): Response<LoginResponse>
-
-    @POST("api/users/fcm-token")
-    suspend fun updateFcmToken(
-        @Header("Authorization") token: String,
-        @Body body: TokenRequest
-    ): Response<Map<String, Any>>
 
     @GET("api/inspector/notifications")
     suspend fun getNotifications(
@@ -69,4 +80,15 @@ interface ApiService {
     suspend fun getDetections(
         @Header("Authorization") token: String
     ): Response<List<Map<String, Any>>>
+
+    @GET("api/inspector/profile")
+    suspend fun getProfile(
+        @Header("Authorization") token: String
+    ): Response<InspectorProfile>
+
+    @PATCH("api/inspector/profile")
+    suspend fun updateProfile(
+        @Header("Authorization") token: String,
+        @Body body: UpdateProfileRequest
+    ): Response<UpdateProfileResponse>
 }
