@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="HISTORY"
+        android:text="@string/history"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -58,7 +58,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="This Week"
+                    android:text="@string/this_week"
                     android:textColor="@color/white"
                     android:textSize="13sp"
                     android:textStyle="bold"
@@ -71,7 +71,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="This Month"
+                    android:text="@string/this_month"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center" />
@@ -81,7 +81,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="This Year"
+                    android:text="@string/this_year"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center" />
@@ -105,7 +105,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Inspections"
+                        android:text="@string/total_inspections"
                         android:textColor="#E0E7FF"
                         android:textSize="13sp" />
 
@@ -113,7 +113,7 @@
                         android:id="@+id/tvTotalInspections"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="98"
+                        android:text="0"
                         android:textColor="@color/white"
                         android:textSize="40sp"
                         android:textStyle="bold" />
@@ -134,19 +134,23 @@
                                 android:id="@+id/tvPassed"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="82"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="22sp"
                                 android:textStyle="bold" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Passed"
+                                android:text="@string/pass"
                                 android:textColor="#E0E7FF"
                                 android:textSize="11sp" />
                         </LinearLayout>
 
-                        <View android:layout_width="1dp" android:layout_height="30dp" android:background="#40FFFFFF" android:layout_gravity="center_vertical" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="30dp"
+                            android:background="#40FFFFFF"
+                            android:layout_gravity="center_vertical" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -158,19 +162,23 @@
                                 android:id="@+id/tvFailed"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="11"
+                                android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="22sp"
                                 android:textStyle="bold" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Failed"
+                                android:text="@string/failed"
                                 android:textColor="#E0E7FF"
                                 android:textSize="11sp" />
                         </LinearLayout>
 
-                        <View android:layout_width="1dp" android:layout_height="30dp" android:background="#40FFFFFF" android:layout_gravity="center_vertical" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="30dp"
+                            android:background="#40FFFFFF"
+                            android:layout_gravity="center_vertical" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -182,14 +190,14 @@
                                 android:id="@+id/tvPassRate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="84%"
+                                android:text="0%"
                                 android:textColor="@color/white"
                                 android:textSize="22sp"
                                 android:textStyle="bold" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rate"
+                                android:text="@string/rate"
                                 android:textColor="#E0E7FF"
                                 android:textSize="11sp" />
                         </LinearLayout>
@@ -197,7 +205,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Filter Tabs -->
+            <!-- Pass/Fail Filter Tabs -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -213,7 +221,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="All"
+                    android:text="@string/filter_all"
                     android:textColor="@color/white"
                     android:background="@drawable/rounded_background"
                     android:backgroundTint="@color/primary_purple"
@@ -226,7 +234,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Passed"
+                    android:text="@string/pass"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center" />
@@ -236,75 +244,64 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Failed"
+                    android:text="@string/failed"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center" />
             </LinearLayout>
 
+            <!-- Recent Activity label -->
             <TextView
                 android:id="@+id/tvRecentActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recent Activity"
+                android:text="@string/recent_activity"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="24dp" />
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp" />
 
+            <!-- Loading -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+
+            <!-- Empty state -->
             <LinearLayout
-                android:id="@+id/layoutActivityList"
+                android:id="@+id/layoutEmptyState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="12dp">
+                android:gravity="center"
+                android:padding="32dp"
+                android:visibility="gone">
 
-                <!-- Item Template with brand colors -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_history"
+                    app:tint="@color/text_muted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="1dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Site A - Zone 4"
-                                android:textColor="@color/text_primary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="PASS"
-                                android:textColor="@color/success_green"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                android:background="@drawable/rounded_background"
-                                android:backgroundTint="#D1FAE5"
-                                android:paddingHorizontal="10dp"
-                                android:paddingVertical="4dp" />
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Today at 11:45 AM"
-                            android:textColor="@color/text_muted"
-                            android:textSize="12sp"
-                            android:layout_marginTop="4dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    android:text="No detections found"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:layout_marginTop="12dp" />
             </LinearLayout>
+
+            <!-- Detections RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F8FAFC">
 
-    <!-- Top Bar with Gradient -->
     <View
         android:id="@+id/viewHeaderBackground"
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:text="MY TEAM"
+        android:text="@string/my_team"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -32,11 +31,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:layout_marginTop="-30dp"
         app:layout_constraintTop_toBottomOf="@id/viewHeaderBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="-30dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,19 +67,23 @@
                             android:id="@+id/tvTotalMembers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="12"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="28sp"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Total Members"
+                            android:text="@string/total_members"
                             android:textColor="#E0E7FF"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <View android:layout_width="1dp" android:layout_height="30dp" android:background="#40FFFFFF" android:layout_gravity="center_vertical" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="#40FFFFFF"
+                        android:layout_gravity="center_vertical" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -92,21 +95,21 @@
                             android:id="@+id/tvActiveNow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="45"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="28sp"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Active Now"
+                            android:text="@string/active_now"
                             android:textColor="#E0E7FF"
                             android:textSize="11sp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Action Button -->
+            <!-- Add Team Member Button -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/btnAddMember"
                 android:layout_width="match_parent"
@@ -127,11 +130,12 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_team"
-                        app:tint="@color/primary_purple" />
+                        app:tint="@color/primary_purple"
+                        android:contentDescription="@string/team" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add Team Member"
+                        android:text="@string/add_team_member"
                         android:textColor="@color/primary_purple"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -146,85 +150,93 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_marginTop="24dp">
+
                 <TextView
                     android:id="@+id/filterAll"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:text="All"
+                    android:text="@string/filter_all"
                     android:textColor="@color/white"
                     android:background="@drawable/rounded_background"
                     android:backgroundTint="@color/primary_purple"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:gravity="center" />
+
                 <TextView
                     android:id="@+id/filterActive"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:text="Active"
+                    android:text="@string/active"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center" />
+
                 <TextView
-                    android:id="@+id/filterInspectors"
+                    android:id="@+id/filterOnLeave"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:text="Inspectors"
+                    android:text="@string/on_leave"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center" />
             </LinearLayout>
 
-            <!-- Members List (Placeholder) -->
+            <!-- Team Members Label -->
             <TextView
                 android:id="@+id/tvMembersLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Team Members"
+                android:text="@string/team_members_label"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="12dp" />
 
-            <androidx.cardview.widget.CardView
+            <!-- Loading -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+
+            <!-- Empty state -->
+            <LinearLayout
+                android:id="@+id/layoutEmptyState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_team"
+                    app:tint="@color/text_muted"
+                    android:contentDescription="@string/team" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
-                    <View android:layout_width="40dp" android:layout_height="40dp" android:background="@color/gray_100" />
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Brenan Cervantes"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lead Inspector"
-                            android:textColor="@color/text_muted"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_chevron_right" app:tint="@color/text_muted" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                    android:text="@string/no_team_members_yet"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+            <!-- Workers RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWorkers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
     </ScrollView>

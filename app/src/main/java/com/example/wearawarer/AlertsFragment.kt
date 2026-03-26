@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wearawarer.databinding.FragmentAlertsBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,15 +42,25 @@ class AlertsAdapter(
     override fun onBindViewHolder(holder: AlertViewHolder, position: Int) {
         val alert = alerts[position]
 
-        holder.tvTitle.text = if (alert.result == "violation") "PPE VIOLATION" else "COMPLIANT"
+        holder.tvTitle.text = if (alert.result == "violation") "⚠ PPE VIOLATION" else "✓ COMPLIANT"
 
-        val missing = alert.missing_ppe?.joinToString(", ") ?: "None"
-        holder.tvMessage.text = "Missing: $missing at ${alert.location ?: alert.station ?: "Site Entrance"}"
+        val missing  = alert.missing_ppe?.joinToString(", ") ?: "None"
+        val station  = alert.location ?: alert.station ?: "Site Entrance"
+        val worker   = alert.worker_name
+
+        holder.tvMessage.text = buildString {
+            if (!worker.isNullOrBlank()) append("Worker: $worker\n")
+            append("Missing: $missing")
+            append(" · $station")
+        }
 
         holder.tvTime.text = formatTimestamp(alert.created_at)
 
         holder.root.alpha = if (alert.is_read) 0.6f else 1.0f
-        holder.tvTitle.setTypeface(null, if (alert.is_read) android.graphics.Typeface.NORMAL else android.graphics.Typeface.BOLD)
+        holder.tvTitle.setTypeface(
+            null,
+            if (alert.is_read) android.graphics.Typeface.NORMAL else android.graphics.Typeface.BOLD
+        )
 
         holder.root.setOnClickListener { onItemClick(alert) }
     }
@@ -60,10 +69,10 @@ class AlertsAdapter(
         if (isoString == "Just Now") return "Just Now"
         return try {
             val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-            parser.timeZone = TimeZone.getTimeZone("UTC")            // input is UTC
+            parser.timeZone = TimeZone.getTimeZone("UTC")
             val date = parser.parse(isoString.replace("Z", ""))
             val formatter = SimpleDateFormat("h:mm a", Locale.getDefault())
-            formatter.timeZone = TimeZone.getTimeZone("Asia/Manila") // display in PH time
+            formatter.timeZone = TimeZone.getTimeZone("Asia/Manila")
             formatter.format(date!!)
         } catch (e: Exception) {
             isoString.take(10)
@@ -91,38 +100,38 @@ class AlertsFragment : Fragment() {
 
     private val alertReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            val rawJson = intent?.getStringExtra("raw_data")
-            if (rawJson != null) {
-                try {
-                    val data = JSONObject(rawJson)
+            val rawJson = intent?.getStringExtra("raw_data") ?: return
+            try {
+                val data = JSONObject(rawJson)
 
-                    val missingArray = data.optJSONArray("missing_ppe")
-                    val missingList = mutableListOf<String>()
-                    if (missingArray != null) {
-                        for (i in 0 until missingArray.length()) {
-                            missingList.add(missingArray.getString(i))
-                        }
+                val missingArray = data.optJSONArray("missing_ppe")
+                val missingList = mutableListOf<String>()
+                if (missingArray != null) {
+                    for (i in 0 until missingArray.length()) {
+                        missingList.add(missingArray.getString(i))
                     }
-
-                    val tempAlert = NotificationAlert(
-                        id           = data.optInt("notification_id", -1),
-                        detection_id = data.optInt("detection_id", -1),
-                        is_read      = false,
-                        created_at   = "Just Now",
-                        result       = data.optString("type", "violation"),
-                        missing_ppe  = missingList,
-                        photo_url    = data.optString("photo_url").takeIf { it.isNotEmpty() },
-                        station      = data.optString("station", "Live Detection"),
-                        location     = data.optString("location").takeIf { it.isNotEmpty() }
-                    )
-
-                    adapter.addAlertAtTop(tempAlert)
-                    binding.rvAlerts.scrollToPosition(0)
-                    updateEmptyState(false)
-
-                } catch (e: Exception) {
-                    Log.e("AlertsFragment", "Error parsing live alert", e)
                 }
+
+                val tempAlert = NotificationAlert(
+                    id                  = data.optInt("notification_id", -1),
+                    detection_id        = data.optInt("detection_id", -1),
+                    is_read             = false,
+                    created_at          = "Just Now",
+                    result              = data.optString("type", "violation"),
+                    missing_ppe         = missingList,
+                    photo_url           = data.optString("photo_url").takeIf { it.isNotEmpty() },
+                    station             = data.optString("station", "Live Detection"),
+                    location            = data.optString("location").takeIf { it.isNotEmpty() },
+                    worker_name         = data.optString("worker_name").takeIf { it.isNotEmpty() },
+                    worker_employee_id  = data.optString("worker_employee_id").takeIf { it.isNotEmpty() }
+                )
+
+                adapter.addAlertAtTop(tempAlert)
+                binding.rvAlerts.scrollToPosition(0)
+                updateEmptyState(false)
+
+            } catch (e: Exception) {
+                Log.e("AlertsFragment", "Error parsing live alert", e)
             }
 
             // Sync with DB after 2 seconds to replace the temp card with the real one
@@ -133,7 +142,9 @@ class AlertsFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentAlertsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -149,9 +160,7 @@ class AlertsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = AlertsAdapter(mutableListOf()) { alert ->
-            markAlertAsRead(alert)
-        }
+        adapter = AlertsAdapter(mutableListOf()) { alert -> markAlertAsRead(alert) }
         binding.rvAlerts.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAlerts.adapter = adapter
     }
@@ -174,7 +183,6 @@ class AlertsFragment : Fragment() {
             try {
                 val response = RetrofitClient.instance.getNotifications("Bearer $token")
                 binding.swipeRefresh.isRefreshing = false
-
                 if (response.isSuccessful) {
                     val alerts = response.body() ?: emptyList()
                     updateUI(alerts)
@@ -204,9 +212,7 @@ class AlertsFragment : Fragment() {
     private fun updateUI(alerts: List<NotificationAlert>) {
         if (!isAdded) return
         updateEmptyState(alerts.isEmpty())
-        if (alerts.isNotEmpty()) {
-            adapter.updateData(alerts)
-        }
+        if (alerts.isNotEmpty()) adapter.updateData(alerts)
     }
 
     private fun updateEmptyState(isEmpty: Boolean) {
@@ -227,7 +233,8 @@ class AlertsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         try {
-            LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(alertReceiver)
+            LocalBroadcastManager.getInstance(requireContext())
+                .unregisterReceiver(alertReceiver)
         } catch (e: Exception) {}
         _binding = null
     }

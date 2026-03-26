@@ -4,29 +4,27 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.wearawarer.databinding.ActivityMainBinding
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val homeFragment        = HomeFragment()
-    private val alertsFragment      = AlertsFragment()
-    private val inspectionsFragment = InspectionsFragment()
-    private val historyFragment     = HistoryFragment()
-    private val teamFragment        = TeamFragment()
+    private val homeFragment    = HomeFragment()
+    private val alertsFragment  = AlertsFragment()
+    private val historyFragment = HistoryFragment()
+    private val teamFragment    = TeamFragment()
 
     private var activeFragment: Fragment = homeFragment
 
     private val tabOrder = listOf(
         R.id.nav_home,
         R.id.nav_alerts,
-        R.id.nav_inspections,
         R.id.nav_history,
         R.id.nav_team
     )
@@ -41,36 +39,47 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
-                add(R.id.fragmentContainer, homeFragment,        "home")
-                add(R.id.fragmentContainer, alertsFragment,      "alerts")
-                add(R.id.fragmentContainer, inspectionsFragment, "inspections")
-                add(R.id.fragmentContainer, historyFragment,     "history")
-                add(R.id.fragmentContainer, teamFragment,        "team")
+                add(R.id.fragmentContainer, homeFragment,    "home")
+                add(R.id.fragmentContainer, alertsFragment,  "alerts")
+                add(R.id.fragmentContainer, historyFragment, "history")
+                add(R.id.fragmentContainer, teamFragment,    "team")
                 hide(alertsFragment)
-                hide(inspectionsFragment)
                 hide(historyFragment)
                 hide(teamFragment)
             }.commit()
         }
 
-        // Handle notification tap when app is launched fresh
         handleNotificationIntent(intent)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
-                } else if (binding.bottomNavigationView.selectedItemId != R.id.nav_home) {
-                    navigateTo(R.id.nav_home)
-                } else {
-                    isEnabled = false
-                    onBackPressedDispatcher.onBackPressed()
+                when {
+                    binding.drawerLayout.isDrawerOpen(GravityCompat.START) -> {
+                        binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    }
+                    supportFragmentManager.findFragmentByTag("help") != null -> {
+                        showBottomNav()  // ← restore bottom nav
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(
+                                R.anim.slide_in_left,
+                                R.anim.slide_out_right
+                            )
+                            .remove(supportFragmentManager.findFragmentByTag("help")!!)
+                            .show(activeFragment)
+                            .commit()
+                    }
+                    binding.bottomNavigationView.selectedItemId != R.id.nav_home -> {
+                        navigateTo(R.id.nav_home)
+                    }
+                    else -> {
+                        isEnabled = false
+                        onBackPressedDispatcher.onBackPressed()
+                    }
                 }
             }
         })
     }
 
-    // Handle notification tap when app is already running in background
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleNotificationIntent(intent)
@@ -90,11 +99,28 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.selectedItemId = itemId
     }
 
+    private fun openHelpFragment() {
+        binding.bottomNavigationView.visibility = View.GONE  // ← hide bottom nav
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(
+            R.anim.slide_in_right,
+            R.anim.slide_out_left
+        )
+        transaction.hide(activeFragment)
+        transaction.add(R.id.fragmentContainer, HelpFragment(), "help")
+        transaction.commit()
+    }
+
+    fun showBottomNav() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
+    }
+
     private fun showFragment(fragment: Fragment, toItemId: Int) {
         if (fragment === activeFragment) return
 
-        val fromIndex = tabOrder.indexOf(binding.bottomNavigationView.selectedItemId)
-        val toIndex   = tabOrder.indexOf(toItemId)
+        val fromIndex  = tabOrder.indexOf(binding.bottomNavigationView.selectedItemId)
+        val toIndex    = tabOrder.indexOf(toItemId)
         val goingRight = toIndex > fromIndex
 
         val enter = if (goingRight) R.anim.slide_in_right else R.anim.slide_in_left
@@ -122,11 +148,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_my_team     -> navigateTo(R.id.nav_team)
-                R.id.nav_inspections -> navigateTo(R.id.nav_inspections)
-                R.id.nav_history     -> navigateTo(R.id.nav_history)
-                R.id.nav_help        -> Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show()
-                R.id.nav_logout      -> performLogout()
+                R.id.nav_my_team -> navigateTo(R.id.nav_team)
+                R.id.nav_history -> navigateTo(R.id.nav_history)
+                R.id.nav_help    -> openHelpFragment()
+                R.id.nav_logout  -> performLogout()
             }
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -153,12 +178,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNav() {
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             val fragment = when (menuItem.itemId) {
-                R.id.nav_home        -> homeFragment
-                R.id.nav_alerts      -> alertsFragment
-                R.id.nav_inspections -> inspectionsFragment
-                R.id.nav_history     -> historyFragment
-                R.id.nav_team        -> teamFragment
-                else                 -> return@setOnItemSelectedListener false
+                R.id.nav_home    -> homeFragment
+                R.id.nav_alerts  -> alertsFragment
+                R.id.nav_history -> historyFragment
+                R.id.nav_team    -> teamFragment
+                else             -> return@setOnItemSelectedListener false
             }
             showFragment(fragment, menuItem.itemId)
             true

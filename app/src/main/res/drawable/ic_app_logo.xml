@@ -1,28 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Save as: res/drawable/ic_app_logo.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="120dp"
-    android:height="120dp"
-    android:viewportWidth="120"
-    android:viewportHeight="120">
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
 
-    <!-- Background circle -->
+    <!-- Shield body -->
     <path
-        android:fillColor="#F97316"
-        android:pathData="M60,60m-55,0a55,55 0,1 1,110 0a55,55 0,1 1,-110 0"/>
+        android:pathData="M32 4L8 16v16c0 14.4 10.24 27.84 24 32 13.76-4.16 24-17.6 24-32V16L32 4z"
+        android:strokeWidth="2"
+        android:strokeColor="#fb923c">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="8" android:startY="4"
+                android:endX="56" android:endY="64"
+                android:type="linear">
+                <item android:offset="0" android:color="#f97316" />
+                <item android:offset="1" android:color="#ea580c" />
+            </gradient>
+        </aapt:attr>
+    </path>
 
-    <!-- Hard hat icon -->
+    <!-- Inner shield highlight -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M60,35C47,35 38,44 38,57v8h44v-8C82,44 73,35 60,35z"/>
+        android:pathData="M32 10L14 19.5v12.5c0 11.2 7.68 21.6 18 24.8 10.32-3.2 18-13.6 18-24.8V19.5L32 10z"
+        android:fillAlpha="0.35">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="14" android:startY="10"
+                android:endX="50" android:endY="56"
+                android:type="linear">
+                <item android:offset="0" android:color="#FFFFFFFF" />
+                <item android:offset="1" android:color="#00FFFFFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Hard hat dome -->
+    <path
+        android:pathData="M22 34c0-6.627 4.477-12 10-12s10 5.373 10 12"
+        android:strokeWidth="3"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
 
     <!-- Hard hat brim -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M32,65h56v8H32z"/>
+        android:pathData="M20 33h24a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2z"
+        android:fillColor="#FFFFFF" />
 
     <!-- Checkmark -->
     <path
-        android:fillColor="#1E293B"
-        android:pathData="M50,75l-8,-8 3,-3 5,5 12,-12 3,3z"/>
+        android:pathData="M26 43l4 4 8-8"
+        android:strokeWidth="3"
+        android:strokeColor="#6ee7a0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000" />
+
 </vector>

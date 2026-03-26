@@ -3,8 +3,8 @@ package com.example.wearawarer
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL = "http://192.168.1.196:5000/"
-const val WS_URL   = "ws://192.168.1.196:8080"   // ← single source of truth
+const val BASE_URL = "http://10.89.184.16:5000/"
+const val WS_URL   = "ws://10.89.184.16:8080"   // ← single source of truth
 
 object RetrofitClient {
     val instance: ApiService by lazy {

@@ -95,9 +95,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupQuickActions() {
-        binding.cardInspections.setOnClickListener {
-            (activity as? MainActivity)?.navigateTo(R.id.nav_inspections)
-        }
         binding.cardHistory.setOnClickListener {
             (activity as? MainActivity)?.navigateTo(R.id.nav_history)
         }

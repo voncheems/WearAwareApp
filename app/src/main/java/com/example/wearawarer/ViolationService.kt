@@ -64,13 +64,17 @@ class ViolationService : Service() {
     private fun handleViolationMessage(jsonText: String) {
         try {
             val data = JSONObject(jsonText)
-            val title = data.optString("title", "Violation Detected")
+            val title   = data.optString("title", "Violation Detected")
             val message = data.optString("message", "A safety violation occurred.")
 
-            // 1. Show the notification tray alert
-            showLocalNotification(title, message)
+            // Build a richer notification body including worker name if available
+            val workerName = data.optString("worker_name").takeIf { it.isNotEmpty() }
+            val notifBody  = if (workerName != null) "$message · Worker: $workerName" else message
 
-            // 2. Broadcast raw JSON to AlertsFragment so it can render the card
+            // 1. Show the notification tray alert
+            showLocalNotification(title, notifBody)
+
+            // 2. Broadcast raw JSON to AlertsFragment
             val intent = Intent("com.wearaware.NEW_ALERT").apply {
                 putExtra("raw_data", jsonText)
             }
@@ -82,7 +86,6 @@ class ViolationService : Service() {
     }
 
     private fun showLocalNotification(title: String, body: String) {
-        // Tell MainActivity to navigate to the alerts tab when notification is tapped
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtra("navigate_to", "alerts")
@@ -97,6 +100,7 @@ class ViolationService : Service() {
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)

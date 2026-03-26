@@ -11,10 +11,6 @@
         android:icon="@drawable/ic_notification"
         android:title="Alerts" />
 
-    <item
-        android:id="@+id/nav_inspections"
-        android:icon="@drawable/ic_inspections"
-        android:title="Inspections" />
 
     <item
         android:id="@+id/nav_history"

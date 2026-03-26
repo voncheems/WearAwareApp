@@ -50,7 +50,7 @@
                         android:id="@+id/tvWelcomeBack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Welcome Back,"
+                        android:text="@string/welcome_back"
                         android:textColor="#E0E7FF"
                         android:textSize="14sp" />
 
@@ -58,7 +58,7 @@
                         android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inspector"
+                        android:text="@string/user_name"
                         android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -71,7 +71,7 @@
                     android:src="@drawable/ic_chevron_right"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
-                    android:contentDescription="Open Sidebar"
+                    android:contentDescription="@string/open_sidebar"
                     app:tint="#E0E7FF" />
             </LinearLayout>
 
@@ -89,7 +89,7 @@
                 android:background="@drawable/rounded_background"
                 android:backgroundTint="#20FFFFFF"
                 app:tint="@color/white"
-                android:contentDescription="Notifications" />
+                android:contentDescription="@string/notifications" />
         </LinearLayout>
 
         <!-- Stats Card -->
@@ -119,7 +119,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Overall Safety Score"
+                        android:text="@string/safety_score_label"
                         android:textColor="@color/text_secondary"
                         android:textSize="13sp" />
 
@@ -127,7 +127,7 @@
                         android:id="@+id/tvSafetyScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A+"
+                        android:text="@string/safety_grade"
                         android:textColor="@color/primary_purple"
                         android:textSize="36sp"
                         android:textStyle="bold" />
@@ -136,7 +136,7 @@
                         android:id="@+id/tvComplianceStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Excellent Compliance"
+                        android:text="@string/excellent"
                         android:textColor="@color/success_green"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -158,7 +158,7 @@
                         android:id="@+id/tvCompliancePercentage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="85%"
+                        android:text="@string/compliance_percentage"
                         android:textColor="@color/primary_orange"
                         android:textSize="28sp"
                         android:textStyle="bold" />
@@ -166,19 +166,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Compliance"
+                        android:text="@string/compliance_text"
                         android:textColor="@color/text_muted"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Quick Actions Grid -->
+        <!-- Quick Actions Header -->
         <TextView
             android:id="@+id/tvQuickActions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quick Actions"
+            android:text="@string/quick_actions"
             android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -196,23 +196,6 @@
             app:layout_constraintTop_toBottomOf="@id/tvQuickActions">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardInspections"
-                android:layout_width="0dp" android:layout_height="100dp"
-                android:layout_columnWeight="1" android:layout_margin="8dp"
-                app:cardCornerRadius="16dp" app:cardElevation="1dp"
-                android:clickable="true" android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                    android:orientation="vertical" android:gravity="center" android:padding="12dp">
-                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_inspections" app:tint="@color/primary_purple" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Inspections" android:textColor="@color/text_primary"
-                        android:textSize="12sp" android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/cardHistory"
                 android:layout_width="0dp" android:layout_height="100dp"
                 android:layout_columnWeight="1" android:layout_margin="8dp"
@@ -222,9 +205,10 @@
                 <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:orientation="vertical" android:gravity="center" android:padding="12dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_history" app:tint="@color/primary_purple" />
+                        android:src="@drawable/ic_history" app:tint="@color/primary_purple"
+                        android:contentDescription="@string/history" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="History" android:textColor="@color/text_primary"
+                        android:text="@string/history" android:textColor="@color/text_primary"
                         android:textSize="12sp" android:layout_marginTop="8dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -239,9 +223,10 @@
                 <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:orientation="vertical" android:gravity="center" android:padding="12dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_team" app:tint="@color/primary_purple" />
+                        android:src="@drawable/ic_team" app:tint="@color/primary_purple"
+                        android:contentDescription="@string/team" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Team" android:textColor="@color/text_primary"
+                        android:text="@string/team" android:textColor="@color/text_primary"
                         android:textSize="12sp" android:layout_marginTop="8dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -256,9 +241,10 @@
                 <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:orientation="vertical" android:gravity="center" android:padding="12dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_training" app:tint="@color/primary_orange" />
+                        android:src="@drawable/ic_training" app:tint="@color/primary_orange"
+                        android:contentDescription="@string/training" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Training" android:textColor="@color/text_primary"
+                        android:text="@string/training" android:textColor="@color/text_primary"
                         android:textSize="12sp" android:layout_marginTop="8dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -273,9 +259,10 @@
                 <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:orientation="vertical" android:gravity="center" android:padding="12dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_compliance" app:tint="@color/primary_orange" />
+                        android:src="@drawable/ic_notification" app:tint="@color/primary_orange"
+                        android:contentDescription="@string/alerts" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Alerts" android:textColor="@color/text_primary"
+                        android:text="@string/alerts" android:textColor="@color/text_primary"
                         android:textSize="12sp" android:layout_marginTop="8dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -290,12 +277,14 @@
                 <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:orientation="vertical" android:gravity="center" android:padding="12dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_settings" app:tint="@color/text_muted" />
+                        android:src="@drawable/ic_settings" app:tint="@color/text_muted"
+                        android:contentDescription="@string/settings" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Settings" android:textColor="@color/text_primary"
+                        android:text="@string/settings" android:textColor="@color/text_primary"
                         android:textSize="12sp" android:layout_marginTop="8dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
         </GridLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

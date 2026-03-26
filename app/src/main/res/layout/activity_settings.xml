@@ -45,7 +45,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:contentDescription="Back" />
+                android:contentDescription="@string/welcome_back_caps" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -64,7 +64,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Settings"
+                    android:text="@string/settings"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -131,7 +131,7 @@
                         android:background="@drawable/rounded_background"
                         android:backgroundTint="#F3F0FF"
                         app:tint="@color/primary_purple"
-                        android:contentDescription="Name" />
+                        android:contentDescription="@string/user_name" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -161,7 +161,7 @@
                         android:id="@+id/btnEditName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edit"
+                        android:text="@string/edit"
                         android:textColor="@color/primary_purple"
                         android:backgroundTint="#F3F0FF"
                         android:textSize="13sp"
@@ -189,7 +189,7 @@
                         android:background="@drawable/rounded_background"
                         android:backgroundTint="#F3F0FF"
                         app:tint="@color/primary_purple"
-                        android:contentDescription="Email" />
+                        android:contentDescription="@string/email_hint" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -263,7 +263,7 @@
                     android:background="@drawable/rounded_background"
                     android:backgroundTint="#F3F0FF"
                     app:tint="@color/primary_purple"
-                    android:contentDescription="Password" />
+                    android:contentDescription="@string/password_hint" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -279,7 +279,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right"
                     app:tint="@color/text_muted"
-                    android:contentDescription="Go" />
+                    android:contentDescription="@string/view_details" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -324,7 +324,7 @@
                     android:background="@drawable/rounded_background"
                     android:backgroundTint="#FFF7ED"
                     app:tint="@color/primary_orange"
-                    android:contentDescription="Notifications" />
+                    android:contentDescription="@string/notifications" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -348,7 +348,7 @@
                         android:textColor="@color/text_secondary" />
                 </LinearLayout>
 
-                <Switch
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switchNotifications"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -383,7 +383,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_inspections"
+                    android:src="@drawable/ic_logout"
                     android:padding="8dp"
                     android:background="@drawable/rounded_background"
                     android:backgroundTint="#FFF1F1"
@@ -405,7 +405,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right"
                     app:tint="#D32F2F"
-                    android:contentDescription="Go" />
+                    android:contentDescription="@string/view_details" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

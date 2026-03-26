@@ -23,7 +23,7 @@
             android:background="@drawable/rounded_background"
             android:backgroundTint="#FEE2E2"
             app:tint="@color/error_red"
-            android:contentDescription="Alert Icon" />
+            android:contentDescription="@string/alert_icon" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,7 +36,7 @@
                 android:id="@+id/tvAlertTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PPE Violation"
+                android:text="@string/ppe_violation"
                 android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -45,19 +45,23 @@
                 android:id="@+id/tvAlertMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No hard hat detected in Zone 4"
+                android:text="@string/compliance_message"
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp"
-                android:layout_marginTop="2dp" />
+                android:layout_marginTop="2dp"
+                android:maxLines="4"
+                android:singleLine="false" />
+
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvAlertTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10:30 AM"
+            android:text="@string/scan_time"
             android:textColor="@color/text_muted"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:layout_gravity="top" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
